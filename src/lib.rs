@@ -8,6 +8,8 @@ extern crate core;
 #[cfg(feature="std")]
 extern crate rustc_hex;
 
+#[cfg(feature="std")]
+use core::{fmt, str};
 use core::{ops, cmp};
 use core::cmp::{min, Ordering};
 use core::ops::{Deref, DerefMut, BitXor, BitAnd, BitOr, IndexMut, Index};
