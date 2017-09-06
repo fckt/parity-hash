@@ -1,0 +1,11 @@
+[package]
+name = "parity-hash"
+version = "1.0.0"
+
+[dependencies]
+bigint = "4"
+rustc-hex = "1.0"
+
+[features]
+default = ["std"]
+std = ["bigint/std"]
