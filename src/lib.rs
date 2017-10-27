@@ -79,6 +79,13 @@ macro_rules! impl_hash {
             }
         }
 
+        impl AsMut<[u8]> for $from {
+            #[inline]
+            fn as_mut(&mut self) -> &mut [u8] {
+                &mut self.0
+            }
+        }
+
         impl DerefMut for $from {
             #[inline]
             fn deref_mut(&mut self) -> &mut [u8] {
@@ -101,12 +108,12 @@ macro_rules! impl_hash {
             pub fn len() -> usize {
                 $size
             }
-            
+
             /// Returns a constant raw pointer to the value
             pub fn as_ptr(&self) -> *const u8 {
                 self.0.as_ptr()
             }
-            
+
             /// Returns a mutable raw pointer to the value
             pub fn as_mut_ptr(&mut self) -> *mut u8 {
                 (&mut self.0).as_mut_ptr()
