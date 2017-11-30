@@ -1,1 +1,1 @@
-A shareable coolection of commonly used fixed-sized byte arrays.
+A shareable collection of commonly used fixed-sized byte arrays.
