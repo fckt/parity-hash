@@ -8,6 +8,13 @@ extern crate core;
 #[cfg(feature="std")]
 extern crate rustc_hex;
 
+#[cfg(feature="serialize")]
+extern crate serde;
+
+#[cfg(feature="serialize")]
+#[macro_use]
+extern crate serde_derive;
+
 #[cfg(feature="std")]
 use core::{fmt, str};
 use core::{ops, cmp};
@@ -45,11 +52,11 @@ fn clean_0x(s: &str) -> &str {
 }
 
 macro_rules! impl_hash {
-    ($from: ident, $size: expr) => {
+    ($from: ident, $size: expr $(, $m:meta)*) => {
         #[repr(C)]
+        $(#[$m])*
         /// Unformatted binary data of fixed length.
         pub struct $from (pub [u8; $size]);
-
 
         impl From<[u8; $size]> for $from {
             fn from(bytes: [u8; $size]) -> Self {
@@ -450,7 +457,7 @@ impl<'a> From<&'a H160> for H256 {
 impl_hash!(H32, 4);
 impl_hash!(H64, 8);
 impl_hash!(H128, 16);
-impl_hash!(H160, 20);
+impl_hash!(H160, 20, cfg_attr(feature = "serialize", derive(Serialize, Deserialize)));
 impl_hash!(H256, 32);
 impl_hash!(H264, 33);
 impl_hash!(H512, 64);
