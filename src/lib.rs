@@ -54,7 +54,6 @@ fn clean_0x(s: &str) -> &str {
 macro_rules! impl_hash {
     ($from: ident, $size: expr $(, $m:meta)*) => {
         #[repr(C)]
-        #[derive(Debug, Copy, Clone, Eq, PartialEq, Hash)]
         $(#[$m])*
         /// Unformatted binary data of fixed length.
         pub struct $from (pub [u8; $size]);
