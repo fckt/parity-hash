@@ -6,12 +6,13 @@ authors = ["Alexey Frolov <alexey@parity.io>"]
 license = "MIT"
 
 [dependencies]
-bigint = "4"
-rustc-hex = "1.0"
+uint = { version = "0.3", path = "../parity-common/uint" }
+# uint = "0.3" # NOT PUBLISHED YET
+rustc-hex = { version = "2.0", default-features = false}
 serde = { version = "1.0", optional = true }
 serde_derive = { version = "1.0", optional = true }
 
 [features]
 default = ["std"]
-std = ["bigint/std"]
+std = ["uint/std"]
 serialize = ["serde", "serde_derive"]
