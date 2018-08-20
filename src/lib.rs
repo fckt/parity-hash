@@ -1,6 +1,6 @@
 #![cfg_attr(not(feature="std"), no_std)]
 
-extern crate bigint;
+extern crate uint;
 
 #[cfg(feature="std")]
 extern crate core;
@@ -21,7 +21,7 @@ use core::{ops, cmp};
 use core::cmp::{min, Ordering};
 use core::ops::{Deref, DerefMut, BitXor, BitAnd, BitOr, IndexMut, Index};
 use core::hash::{Hash, Hasher};
-use bigint::U256;
+use uint::U256;
 
 #[cfg(feature="std")]
 use rustc_hex::{FromHex, FromHexError};
@@ -172,7 +172,7 @@ macro_rules! impl_hash {
             type Err = FromHexError;
 
             fn from_str(s: &str) -> Result<$from, FromHexError> {
-                let a = s.from_hex()?;
+                let a : Vec<u8> = s.from_hex()?;
                 if a.len() != $size {
                     return Err(FromHexError::InvalidHexLength);
                 }
