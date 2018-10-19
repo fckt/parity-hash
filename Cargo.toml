@@ -2,6 +2,7 @@
 name = "parity-hash"
 version = "1.2.2"
 description = "A collection of fixed-size byte array representations"
+repository = "https://github.com/fckt/parity-hash"
 authors = ["Alexey Frolov <alexey@parity.io>"]
 license = "MIT"
 
